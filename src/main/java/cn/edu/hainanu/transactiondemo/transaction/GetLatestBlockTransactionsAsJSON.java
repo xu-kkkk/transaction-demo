@@ -4,11 +4,14 @@ package cn.edu.hainanu.transactiondemo.transaction;
 import cn.edu.hainanu.transactiondemo.entity.TransactionInfo;
 import com.google.gson.Gson;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.DefaultBlockParameter;
 import org.web3j.protocol.core.DefaultBlockParameterName;
+import org.web3j.protocol.core.DefaultBlockParameterNumber;
 import org.web3j.protocol.core.methods.response.EthBlock;
 import org.web3j.protocol.http.HttpService;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +29,10 @@ public class GetLatestBlockTransactionsAsJSON {
                 new HttpService("https://eth-mainnet.g.alchemy.com/v2/YYNvlN7f-3kl25Mn6Lw-0VDcx6GdgFaf"));
 
         // 最新区块参数
-        DefaultBlockParameterName blockParameterName = DefaultBlockParameterName.LATEST;
+//        DefaultBlockParameterName blockParameterName = DefaultBlockParameterName.LATEST;
+        // 固定获取高度为 18119337 的区块中的交易
+        DefaultBlockParameter blockParameterName = new DefaultBlockParameterNumber(new BigInteger("18119337"));
+
 
         // 获取最新区块信息
         EthBlock.Block block = web3j
